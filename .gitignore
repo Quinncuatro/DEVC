@@ -1,0 +1,9 @@
+**\_notes
+**\.DS_Store
+**\dwsync.xml
+**\.sync.ffs_db
+.idea
+docker-compose.yml
+lucee/Dockerfile
+sqldumps/*.sql
+newdumps/*.sql
