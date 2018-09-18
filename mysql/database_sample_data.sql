@@ -46,7 +46,7 @@ CREATE TABLE `infotables` (
 
 LOCK TABLES `infotables` WRITE;
 /*!40000 ALTER TABLE `infotables` DISABLE KEYS */;
-INSERT INTO `infotables` VALUES (1,'Clerk Office Mission Statement','Home','Miscellaneous Links','http://eli/whats_new/Clerks%20Office%20Mission%20Statement.pdf'),(2,'US Courts Website','Home','Miscellaneous Links','http://www.uscourts.gov'),(3,'District of CT Website','Home','Miscellaneous Links','http://www.ctd.uscourts.gov/'),(4,'FCCA Official Website','Home','Miscellaneous Links','http://www.fcca.ws/');
+INSERT INTO `infotables` VALUES (1,'Clerk Office Mission Statement','Home','Miscellaneous Links','http://eli/whats_new/Clerks%20Office%20Mission%20Statement.pdf'),(2,'US Courts Website','Home','Miscellaneous Links','http://www.uscourts.gov'),(3,'District of CT Website','Home','Miscellaneous Links','http://www.ctd.uscourts.gov/'),(4,'FCCA Official Website','Home','Miscellaneous Links','http://www.fcca.ws/'),(5,'Employee Recognition Program','Home','Employee Recognition','http://eli/index/EmployeeRecognitionPlan.pdf'),(6,'Cheers For Peers','Home','Employee Recognition','http://eli/index/CheersForPeers.docx');
 /*!40000 ALTER TABLE `infotables` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

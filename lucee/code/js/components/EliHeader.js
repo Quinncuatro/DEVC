@@ -7,13 +7,13 @@ export default {
           <tbody>
             <tr>
               <td class="seal hidden-xs">
-                <img src="./img/ct_seal.png">
+                <img src="">
               </td> 
               <td class="titles">
-                <h3 class="districtTitle">UNITED STATES DISTRICT COURT</h3>
-                <h1 class="districtTitle">District of Connecticut</h1>
-                <p class="clerkTitle hidden-xs">Honorable Janet C. Hall, Chief Judge</p>
-                <p class="clerkTitle hidden-xs">Robin D. Tabora, Clerk of Court</p>
+                <h3 class="districtTitle">Workplace of America</h3>
+                <h1 class="districtTitle">Places With Things</h1>
+                <p class="clerkTitle hidden-xs">What's His Name, Chief Somebody Officer</p>
+                <p class="clerkTitle hidden-xs">The One With The Hair, Backup CSO</p>
               </td>
             </tr>
           </tbody>

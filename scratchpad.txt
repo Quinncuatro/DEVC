@@ -1,0 +1,158 @@
+<table class="table table-bordered">
+      <tbody>
+        <tr>
+          <td class="tableHeading">{{ tablename }}</td>
+        </tr>
+        <tr>
+          <td><a href="#" target="_blank">Form Name</a></td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+    <datalist id="rowNameList">
+      <option v-for="rowName, index in rowNames">{{rowName}} </option>
+    </datalist>
+
+
+
+    ,
+  mounted() {
+    fetch("../../cfm/models/InfoTable.cfc?method=getTableRows")
+    .then(response => response.json())
+    .then((data) => {
+    this.rowNames = data;
+    })
+  },
+  data() {
+    return {
+      rowNames: []
+    }
+  }
+
+
+
+
+
+  // Get a list of names of the links
+remote any function getRownames() {
+  var get_results = new query(datasource="elidb",sql="SELECT ItemName FROM infotables ORDER BY lower(ItemName) DESC").execute().getResult();
+  // Create array to store the list of names
+  var results = ArrayNew(1);
+  // Add each item to the array
+  for (result in get_results) {
+    arrayAppend(results, result.itemname);
+  }
+  // This sets the return of this function to json format
+  url.returnformat = 'json';
+  return results;
+}
+
+<cfcomponent output="false" >
+<cfset variables.dsn = "elidb" />
+
+  <!--- Get Art Names --->
+    <cffunction name="getRowNames" output="false" access="remote" returntype="any" returnformat="plain" hint="Search the Rows by Row Name">
+        <cfset var results = ""/>
+
+        <cfquery name="results" datasource="elidb">
+            SELECT i.ItemName
+            FROM infotables i
+            ORDER BY lower(ItemName) DESC
+        </cfquery>
+        
+        <cfset var qryStruct = structNew() />
+        <cfset qryStruct.resultCount = results.recordCount />
+        <cfset qryStruct.results = results />
+        
+        <cfreturn serializeJSON(qryStruct, "struct") />
+    </cffunction>
+
+</cfcomponent>
+
+
+<cffunction name="getRowNames" access="remote">
+
+      <cftry>
+        <cfquery name="qGetRowNames" dataSource="elidb">
+          SELECT *
+          FROM infotables
+        </cfquery>
+        <cfcatch>
+          <cfset qGetRowNames = "1">
+        </cfcatch>
+      </cftry>
+  </cffunction>\
+
+
+
+
+
+
+
+
+<cfcomponent>
+<cfset variables.dsn = "elidb" />
+
+  <!--- Get Art Names --->
+<!---   <cffunction name="getRowNames" output="false" access="remote" returntype="any" returnformat="plain" hint="Search the Rows by Row Name"> --->
+<!--- <cfset var results = ""/> --->
+
+        <cfquery name="getResults" datasource="elidb">
+            SELECT *
+            FROM infotables
+        </cfquery>
+        
+        <cfdump var="#getResults#" />
+        
+<!---         <cfset var qryStruct = structNew() /> --->
+<!---         <cfset qryStruct.resultCount = getResults.recordCount /> --->
+<!---         <cfset qryStruct.results = results /> --->
+
+<!---         <cfdump var="#getResults#" /> --->
+        
+<!---   </cffunction> --->
+
+</cfcomponent>
+
+
+
+component {
+  variables.dsn = "elidb";
+
+   // Get a list of names of the links
+  remote any function getRownames() {
+    var get_results = new query(datasource="elidb",sql="SELECT ItemName FROM infotables ORDER BY lower(ItemName) DESC").execute().getResult();
+    // Create array to store the list of names
+    var results = ArrayNew(1);
+    // Add each item to the array
+    for (result in get_results) {
+      arrayAppend(results, result.itemname);
+    }
+    // This sets the return of this function to json format
+    url.returnformat = 'json';
+    return results;
+  }
+}
+
+
+
+
+
+component restpath="/test" rest="true" {
+ // Get a list of names of the links
+remote any function getRownames() httpmethod="GET" {
+ var get_results = new query(datasource="elidb",sql="SELECT ItemName FROM infotables ORDER BY lower(ItemName) DESC").execute().getResult();
+ // Create array to store the list of names
+ var results = ArrayNew(1);
+ // Add each item to the array
+ for (result in get_results) {
+   arrayAppend(results, result.itemname);
+ }
+ // This sets the return of this function to json format
+ url.returnformat = 'json';
+ return results;
+}
+
+}

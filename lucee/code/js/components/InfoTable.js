@@ -1,6 +1,14 @@
 export default {
   props:{
-    tablename: {
+    TableName: {
+      type: String,
+      required: true
+    },
+    CFArgTableName: {
+      type: String,
+      required: true
+    },
+    CFArgTableCat: {
       type: String,
       required: true
     }
@@ -9,32 +17,27 @@ export default {
   <table class="table table-bordered">
     <tbody>
       <tr>
-        <td class="tableHeading">{{ tablename }}</td>
+        <td class="tableHeading">{{ TableName }}</td>
       </tr>
-      <tr>
-        <td><p v-for="rowName in rowNames">{{ rowName }}</p></td>
+      <tr v-for="row in rowInfo">
+        <td>
+          <a :href="row[1]">{{ row[0] }}</a>
+        </td>
       </tr>
     </tbody>
   </table>
   `,
-  mounted() {
-    fetch("/cfm/models/InfoTable.cfc?method=getRowNames")
-    .then(function(response) {
-      console.log(response)
-      // return response.json();
+  created() {
+    fetch( './cfm/models/InfoTable.cfm?TableName=' + this.CFArgTableName + '&TableCategory=' + this.CFArgTableCat)
+    .then( res => res.json() )
+    .then (res => {
+      this.rowInfo = res.DATA;
+      console.log(res.DATA);
     })
-    .then(function(myJson) {
-      console.log(myJson);
-    });
-    // .then(console.log(response))
-    //.then(response => response.json())
-    //.then((data) => {
-    //this.rowNames = data;
-    //})
   },
   data() {
     return {
-      rowNames: ['a', 'b', 'c']
+      rowInfo: {}
     }
   }
 };
