@@ -99,12 +99,12 @@ do
 
       # Spin up eli-lucee container
       echo "Spinning up eli-lucee container"
-      docker run -d -p 127.0.0.1:7777:8888 --restart always --name eli-lucee --mount type=bind,source=$(pwd)/lucee/code,target=/var/www --network eli-net elivue_lucee-eli:latest
+      docker run -d -p 127.0.0.1:7777:8888 --restart always --name eli-lucee --mount type=bind,source=$(pwd)/lucee/code,target=/var/www --network eli-net eli_vue2_lucee-eli:latest
       echo "-----------------------"
 
       # Spin up jdash-mysql-db container
       echo "Spinning up jdash-mysql-db container"
-      docker run -d -p 127.0.0.1:3305:3306 --restart always --name eli-db -v eli_dbdata:/var/lib/mysql --network eli-net elivue_db-eli:latest
+      docker run -d -p 127.0.0.1:3305:3306 --restart always --name eli-db -v eli_dbdata:/var/lib/mysql --network eli-net eli_vue2_db-eli:latest
       echo "-----------------------"
 
       exit 1
