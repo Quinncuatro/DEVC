@@ -99,12 +99,12 @@ do
 
       # Spin up eli-lucee container
       echo "Spinning up eli-lucee container"
-      docker run -d -p 127.0.0.1:7777:8888 --restart always --name eli-lucee --mount type=bind,source=$(pwd)/lucee/code,target=/var/www --network eli-net eli_vue2_lucee-eli:latest
+      docker run -d -p 127.0.0.1:7777:8888 --restart always --name eli-lucee --mount type=bind,source=$(pwd)/lucee/code,target=/var/www --network eli-net eli_lucee-eli:latest
       echo "-----------------------"
 
       # Spin up jdash-mysql-db container
       echo "Spinning up jdash-mysql-db container"
-      docker run -d -p 127.0.0.1:3305:3306 --restart always --name eli-db -v eli_dbdata:/var/lib/mysql --network eli-net eli_vue2_db-eli:latest
+      docker run -d -p 127.0.0.1:3305:3306 --restart always --name eli-db -v eli_dbdata:/var/lib/mysql --network eli-net eli_db-eli:latest
       echo "-----------------------"
 
       exit 1
@@ -156,23 +156,23 @@ do
       fi
 
       # If image for locallucee exists, remove it.
-      existing_locallucee_image=`docker images | grep elivue_lucee-eli | wc -l`
+      existing_locallucee_image=`docker images | grep eli_lucee-eli | wc -l`
       if [ $existing_locallucee_image -gt "0" ]
       then
-        echo "Image elivue_lucee-eli exists."
+        echo "Image eli_lucee-eli exists."
         echo "Removing image now."
-        docker rmi elivue_lucee-eli
+        docker rmi eli_lucee-eli
         echo "Removing image complete."
         echo "-----------------------"
       fi
 
       # If image for localdb exists, remove it.
-      existing_localdb_image=`docker images | grep elivue_db-eli | wc -l`
+      existing_localdb_image=`docker images | grep eli_db-eli | wc -l`
       if [ $existing_localdb_image -gt "0" ]
       then
-        echo "Image elivue_db-eli exists."
+        echo "Image eli_db-eli exists."
         echo "Removing image now."
-        docker rmi elivue_db-eli
+        docker rmi eli_db-eli
         echo "Removing image complete."
         echo "-----------------------"
       fi
